@@ -4,6 +4,8 @@ const countryInput = document.getElementById('country');
 const myForm = document.getElementById('form');
 const modal = document.getElementById('form-feedback-modal');
 const clicksInfo = document.getElementById('click-count');
+const vatBox = document.getElementById('vatUE');
+const vatEdit = document.getElementById('vatNumber');
 
 function handleClick() {
     clickCount++;
@@ -36,6 +38,10 @@ function getCountryByIP() {
         });
 }
 
+function checkVat() {
+    vatEdit.visible = vatBox.checked;
+}
+
 function getCountryCode(countryName) {
     const apiUrl = `https://restcountries.com/v3.1/name/${countryName}?fullText=true`;
 
@@ -59,6 +65,6 @@ function getCountryCode(countryName) {
 (() => {
     // nasłuchiwania na zdarzenie kliknięcia myszką
     document.addEventListener('click', handleClick);
-
+    checkVat();
     fetchAndFillCountries();
 })()
