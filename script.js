@@ -5,7 +5,8 @@ const myForm = document.getElementById('form');
 const modal = document.getElementById('form-feedback-modal');
 const clicksInfo = document.getElementById('click-count');
 const vatBox = document.getElementById('vatUE');
-const vatEdit = document.getElementById('vatNumber');
+const vatEdit = document.getElementById('vatNumber').parentElement;
+const vatData = document.getElementById('invoiceData').parentElement;
 
 function handleClick() {
     clickCount++;
@@ -39,7 +40,8 @@ function getCountryByIP() {
 }
 
 function checkVat() {
-    vatEdit.visible = vatBox.checked;
+    vatEdit.hidden = !vatBox.checked;
+    vatData.hidden = !vatBox.checked;
 }
 
 function getCountryCode(countryName) {
@@ -65,6 +67,6 @@ function getCountryCode(countryName) {
 (() => {
     // nasłuchiwania na zdarzenie kliknięcia myszką
     document.addEventListener('click', handleClick);
-    checkVat();
+    vatBox.addEventListener('change', checkVat);
     fetchAndFillCountries();
 })()
