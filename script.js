@@ -8,6 +8,7 @@ const clicksInfo = document.getElementById('click-count');
 const vatBox = document.getElementById('vatUE');
 const vatEdit = document.getElementById('vatNumber').parentElement;
 const vatData = document.getElementById('invoiceData').parentElement;
+const mainContainer = document.getElementById('mainContainer');
 
 function handleClick() {
     clickCount++;
@@ -97,6 +98,9 @@ async function changeDialCode() {
     countryInput.addEventListener('change',changeDialCode);
     document.addEventListener('click', handleClick);
     vatBox.addEventListener('change', checkVat);
+    mainContainer.addEventListener("keypress", function(event) { if (event.key === "Enter") { event.preventDefault(); document.getElementById("submitButton").click();      
+}
+});
     fetchAndFillCountries();
     fillCountryCodes();
     getCountryByIP();
